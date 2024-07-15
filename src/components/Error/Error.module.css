@@ -1,0 +1,15 @@
+.Error{
+    position: fixed;
+    inset: 30% 30% 30% 30%;
+    z-index : 2;
+    margin: 0 auto;
+    background-color: rgb(255, 0, 0);
+    text-align: center;
+    border-radius: 1rem;
+    padding: 2rem;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px orange , -5px -5px 10px orange;
+    
+
+    
+}
