@@ -10,18 +10,19 @@ import AllUser from './components/AllUser/AllUser';
 function App() {
   return (
     <div className="App">
+            <BrowserRouter>
       <ChatAppProvider>
-        <BrowserRouter>
-        <Routes>
-        <Route path='all_user' element={<AllUser/>} />
-        </Routes>
-      </BrowserRouter>
-      
       <Navbar/>
       <Filter/>
       <Friend/>
-      </ChatAppProvider>
+        <Routes>
+        <Route path='all_user' element={<AllUser/>} />
+        </Routes>
 
+
+
+      </ChatAppProvider>
+      </BrowserRouter>
     </div>
   );
 }

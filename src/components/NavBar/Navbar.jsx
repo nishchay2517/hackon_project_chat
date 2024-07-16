@@ -44,10 +44,7 @@ const Navbar = () => {
                     <div className={Style.Navbar_box_right_menu}>
                         {menuItems.map((el , i) => (
                             <div onClick={()=>{setactive(i+1)}} key={i+1} className={`${Style.Navbar_box_right_menu_items} ${active==i+1 ?  Style.active_btn : ""}`}>
-                                <BrowserRouter>
                                 <Link className={Style.Navbar_box_right_menu_items_link} to={el.link}>{el.menu}</Link>
-                                </BrowserRouter>
-                                
                             </div>
                         ))}
                     </div>

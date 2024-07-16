@@ -1,6 +1,6 @@
 import React from 'react';
 import Style from "./UserCard.module.css";
-const UserCard = (el , i , addFriends) => {
+const UserCard = ({el , i , addFriends}) => {
     return (
         <div className={Style.UserCard}>
             <div className={Style.UserCard_box}>
