@@ -1,13 +1,15 @@
-import React , {useEffect} from 'react';
+import React , {useContext, useEffect} from 'react';
 import Style from './Card.module.css';
 import { Link } from 'react-router-dom';
+import { chatAppContext } from '../../../Context/chatAppContext';
 
 const Card = ({readMessage , el ,i , readUser}) => {
+    const {chatData ,setchatData} = useContext(chatAppContext);
     return (
         <Link to={{pathname : '/' ,
          query :{ name :`${el.name}` , address : `${el.pubkey}`}}}
          >
-            <div className={Style.Card} onClick={()=>{readMessage(el.pubkey); readUser(el.pubkey)}}>
+            <div className={Style.Card} onClick={()=>{readMessage(el.pubkey); readUser(el.pubkey); setchatData({ name :`${el.name}` , address : `${el.pubkey}`})}}>
                 <div className={Style.Card_box}>
                     <div className={Style.Card_box_left}>
                         <img src='' alt='username' width={50} height={50} className={Style.Card_box_left_img}/>

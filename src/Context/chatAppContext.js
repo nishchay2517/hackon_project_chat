@@ -12,6 +12,10 @@ export const ChatAppProvider = (props) => {
     const [Loading, setLoading] = useState(false);
     const [userList, setUserList] = useState([]);
     const [err, setErr] = useState("");
+    const [chatData, setchatData] = useState({
+        name :"" ,
+        address : ""
+    });
 
     const [currentUserName, setCurrentUserName] = useState("");
     const [currentUserAddress, setCurrentUserAddress] = useState("");
@@ -48,13 +52,14 @@ export const ChatAppProvider = (props) => {
             const read = await contract.readMessage(friendAddress);
             setFriendMsg(read);
         } catch (err) {
+            console.log(err);
             setErr("AN ERROR OCCURED");
         }
     };
 
     const createAccount = async (Name, accountAddress) => {
         try {
-            // if (Name || accountAddress) return setErr("Name and account address cannot be empty");
+            if (Name || accountAddress) return setErr("Name and account address cannot be empty");
 
             const contract = await connectingWithContract();
             const getCreateUser = await contract.createAccount(Name);
@@ -94,6 +99,7 @@ export const ChatAppProvider = (props) => {
             window.location.reload();
         } catch (err) {
             setErr("AN ERROR OCCURED");
+            console.log(err);
         }
     };
 
@@ -109,7 +115,7 @@ export const ChatAppProvider = (props) => {
     };
 
     return (
-        <chatAppContext.Provider value={{ readMessage, createAccount, addFriends, sendMessage, readUser, connectWallet, CheckifWalletConnected, account, userName, friendList, friendMsg, loading: Loading, userList, err, currentUserName, currentUserAddress }}>
+        <chatAppContext.Provider value={{ readMessage, createAccount, addFriends, sendMessage, readUser, connectWallet, CheckifWalletConnected,setchatData,chatData,account, userName, friendList, friendMsg, loading: Loading, userList, err, currentUserName, currentUserAddress }}>
             {props.children}
         </chatAppContext.Provider>
     );

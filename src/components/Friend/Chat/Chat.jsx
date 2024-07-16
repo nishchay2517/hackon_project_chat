@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-
+import React, { useContext, useEffect, useState } from 'react';
+// import { useRouter } from 'next/router';
 import Style from "./Chat.module.css"
 import { coverTime } from '../../../utils/apiFeatures';
 import {Loader} from "../../index"
+import { chatAppContext } from '../../../Context/chatAppContext';
 const Chat = ({functionName , readMessage ,friendMsg , account , userName , Loading , currentUserName , currentUserAddress}) => {
     const [message , setMessage] = useState('');
-    const [chatData, setchatData] = useState({
-        name :"" ,
-        address : ""
-    });
+    const {chatData} = useContext(chatAppContext);
+
     return (
         <div className={Style.Chat}>
             {currentUserName && currentUserAddress ? (
@@ -27,7 +26,7 @@ const Chat = ({functionName , readMessage ,friendMsg , account , userName , Load
                     <div className={Style.Chat_box_left}>
                         {
                             friendMsg.map((el , i)=>(
-                            <div>
+                            <div key={i+1}>
                                 {el.sender == chatData.address ? (
                                     <div className={Style.Chat_box_left_title}>
                                         <img src='' alt='image' width={50} height={50} />
@@ -41,11 +40,11 @@ const Chat = ({functionName , readMessage ,friendMsg , account , userName , Load
                                         <img src='' alt='image' width={50} height={50} />
                                         <span>
                                             {userName} {""}
-                                            <small>{coverTime(el.timestamp)}</small>
+                                            <small>Time :{coverTime(el.timestamp)}</small>
                                         </span>
                                     </div>
                                 )}
-                                <p key={i+1}>{el.msg}</p>
+                                <p key={i+1}>{el.mesg}</p>
                             </div>
                         ))
                         }
@@ -60,7 +59,7 @@ const Chat = ({functionName , readMessage ,friendMsg , account , userName , Load
                             Loading==true ? (
                                 <Loader/>
                             ):(
-                                <img src='' alt='file' width={50} height={50} onClick={()=>functionName({msg :message , address : chatData})}/>
+                                <button onClick={()=>functionName({msg :message , address : chatData.address})}><i className="fa-solid fa-paper-plane"></i></button>
                             )
                         }
                     </div>

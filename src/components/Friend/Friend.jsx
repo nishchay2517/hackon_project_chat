@@ -6,7 +6,7 @@ import Chat from './Chat/Chat';
 
 import { chatAppContext } from '../../Context/chatAppContext';
 const Friend = () => {
-    // const array = [1,2,3,4,6];
+
     const {sendMessage , account , friendList , readMessage ,friendMsg, userName , loading , currentUserName , currentUserAddress , readUser} = useContext(chatAppContext);
     return (
         <div className={Style.Friend}>
