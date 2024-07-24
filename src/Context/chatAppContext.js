@@ -38,7 +38,7 @@ export const ChatAppProvider = (props) => {
             setUserList(userList);
         } catch (err) {
             console.log(err);
-            setErr("COULD NOT FETCH DATA");
+            setErr("COULD NOT FETCH DATA switch to sepolia or IF you are trying to make account ignore this");
         }
     };
 
